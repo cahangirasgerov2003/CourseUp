@@ -1,10 +1,12 @@
-const path = require("path");
+import express from "express";
 
-const express = require("express");
-
-const exphbs = require("express-handlebars");
+import { create } from "express-handlebars";
 
 const app = express();
+
+if (process.env.NODE_ENV === "production") {
+  app.enable("view cache");
+}
 
 const port = 3000;
 
@@ -12,15 +14,19 @@ const hostname = "127.0.0.1";
 
 app.use(express.static("src"));
 
-app.engine("handlebars", exphbs.engine());
+const hbs = create();
+
+app.engine("handlebars", hbs.engine);
 
 app.set("view engine", "handlebars");
+
 app.set("views", "./views");
 
 app.get("/", (req, res) => {
-  // res.sendFile(path.resolve(__dirname, "public/index.html"));
   res.render("site/index");
 });
+
+// { layout: false }
 
 app.get("/about", (req, res) => {
   res.render("site/about");
