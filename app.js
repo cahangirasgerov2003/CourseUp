@@ -2,6 +2,8 @@ import express from "express";
 
 import { create } from "express-handlebars";
 
+import mongoose from "mongoose";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -11,6 +13,8 @@ if (process.env.NODE_ENV === "production") {
 const port = 3000;
 
 const hostname = "127.0.0.1";
+
+mongoose.connect(`mongodb://127.0.0.1:27017/courses_db`);
 
 app.use(express.static("src"));
 
@@ -42,6 +46,14 @@ app.get("/blog-single", (req, res) => {
 
 app.get("/contact", (req, res) => {
   res.render("site/contact");
+});
+
+app.get("/login", (req, res) => {
+  res.render("site/login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("site/register");
 });
 
 app.listen(port, hostname, () => {
