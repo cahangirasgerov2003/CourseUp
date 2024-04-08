@@ -4,6 +4,8 @@ import { create } from "express-handlebars";
 
 import mongoose from "mongoose";
 
+import main from "./routes/main.js";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -29,35 +31,7 @@ app.set("view engine", "handlebars");
 
 app.set("views", "./views");
 
-app.get("/", (req, res) => {
-  res.render("site/index");
-});
-
-// { layout: false }
-
-app.get("/about", (req, res) => {
-  res.render("site/about");
-});
-
-app.get("/blog", (req, res) => {
-  res.render("site/blog");
-});
-
-app.get("/blog-single", (req, res) => {
-  res.render("site/blog-single");
-});
-
-app.get("/contact", (req, res) => {
-  res.render("site/contact");
-});
-
-app.get("/login", (req, res) => {
-  res.render("site/login");
-});
-
-app.get("/register", (req, res) => {
-  res.render("site/register");
-});
+app.use("/", main);
 
 app.listen(port, hostname, () => {
   console.log(`Server: http://${hostname}:${port}`);
