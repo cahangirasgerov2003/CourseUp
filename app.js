@@ -23,6 +23,8 @@ mongoose
 
 app.use(express.static("src"));
 
+app.use("/", main);
+
 const hbs = create();
 
 app.engine("handlebars", hbs.engine);
@@ -30,8 +32,6 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.set("views", "./views");
-
-app.use("/", main);
 
 app.listen(port, hostname, () => {
   console.log(`Server: http://${hostname}:${port}`);
