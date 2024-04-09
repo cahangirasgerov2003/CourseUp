@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-import post from "./models/post.js";
+// import post from "./models/post.js";
 
-mongoose.connect(`mongodb://127.0.0.1/courses_test_db`);
+// mongoose.connect(`mongodb://127.0.0.1/courses_test_db`);
 
 // post
 //   .create({

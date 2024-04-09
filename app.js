@@ -6,6 +6,10 @@ import mongoose from "mongoose";
 
 import main from "./routes/main.js";
 
+import posts from "./routes/posts.js";
+
+import bodyParser from "body-parser";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -23,7 +27,13 @@ mongoose
 
 app.use(express.static("src"));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+
 app.use("/", main);
+
+app.use("/posts", posts);
 
 const hbs = create();
 

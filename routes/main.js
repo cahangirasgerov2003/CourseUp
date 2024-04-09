@@ -20,10 +20,6 @@ router.get("/blog-single", (req, res) => {
   res.render("site/blog-single");
 });
 
-router.get("/posts/new", (req, res) => {
-  res.render("site/add-post");
-});
-
 router.get("/contact", (req, res) => {
   res.render("site/contact");
 });
@@ -34,10 +30,6 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
   res.render("site/register");
-});
-
-router.post("/posts/test", (req, res) => {
-  res.send("Test post request !");
 });
 
 export default router;
