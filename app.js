@@ -8,6 +8,8 @@ import main from "./routes/main.js";
 
 import posts from "./routes/posts.js";
 
+import blog from "./routes/blog.js";
+
 import bodyParser from "body-parser";
 
 const app = express();
@@ -34,6 +36,8 @@ app.use(bodyParser.json());
 app.use("/", main);
 
 app.use("/posts", posts);
+
+app.use("/blog", blog);
 
 const hbs = create();
 

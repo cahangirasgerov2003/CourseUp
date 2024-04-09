@@ -162,7 +162,11 @@ nav.navbar-container {
   font-weight: bold;
 }
 
-nav.shrink {
+.page-link:hover {
+  background-color: #fd8a10;
+}
+
+.navStyle.shrink {
   background-color: #fd8a10 !important;
 }
 
