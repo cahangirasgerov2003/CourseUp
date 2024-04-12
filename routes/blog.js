@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
     .find({})
     .lean()
     .then((response) => {
-      console.log("Response", response);
       res.render("site/blog", { posts: response });
     })
     .catch((err) => console.log(err));

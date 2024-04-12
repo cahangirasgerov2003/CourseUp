@@ -14,6 +14,10 @@ import bodyParser from "body-parser";
 
 import fileUpload from "express-fileupload";
 
+import generateDate from "./helpers/generateDate.js";
+
+import textLengthControl from "./helpers/textLengthControl.js";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -50,7 +54,12 @@ app.use("/posts", posts);
 
 app.use("/blog", blog);
 
-const hbs = create();
+const hbs = create({
+  helpers: {
+    generateDate: generateDate.generateDate,
+    textLengthControl: textLengthControl.lengthControl,
+  },
+});
 
 app.engine("handlebars", hbs.engine);
 
