@@ -28,7 +28,7 @@ router.post("/test", (req, res) => {
   post_file.mv(path.resolve(__dirname, "../src/img/posts", post_file.name));
   post.create({
     ...req.body,
-    post_file: `/src/img/${post_file.name}`,
+    post_file: `/img/posts/${post_file.name}`,
   });
   res.redirect("/");
 });

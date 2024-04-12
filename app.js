@@ -37,6 +37,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+// const middleware = (req, res, next) => {
+//   console.log("Salam");
+//   next();
+// };
+
+// app.use("/", middleware);
+
 app.use("/", main);
 
 app.use("/posts", posts);
