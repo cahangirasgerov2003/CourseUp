@@ -12,6 +12,8 @@ import blog from "./routes/blog.js";
 
 import bodyParser from "body-parser";
 
+import fileUpload from "express-fileupload";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -26,6 +28,8 @@ mongoose
   .connect(`mongodb://127.0.0.1/courses_db`)
   .then("Connected !")
   .catch("Connect error !");
+
+app.use(fileUpload());
 
 app.use(express.static("src"));
 

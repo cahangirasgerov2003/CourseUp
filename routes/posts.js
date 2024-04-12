@@ -2,6 +2,10 @@ import express from "express";
 
 import post from "../models/post.js";
 
+import path from "path";
+
+import { fileURLToPath } from "url";
+
 const router = express.Router();
 
 router.get("/new", (req, res) => {
@@ -18,7 +22,14 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/test", (req, res) => {
-  post.create(req.body);
+  let post_file = req.files.post_file;
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  post_file.mv(path.resolve(__dirname, "../src/img/posts", post_file.name));
+  post.create({
+    ...req.body,
+    post_file: `/src/img/${post_file.name}`,
+  });
   res.redirect("/");
 });
 
