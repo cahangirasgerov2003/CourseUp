@@ -10,6 +10,8 @@ import posts from "./routes/posts.js";
 
 import blog from "./routes/blog.js";
 
+import users from "./routes/users.js";
+
 import bodyParser from "body-parser";
 
 import fileUpload from "express-fileupload";
@@ -53,6 +55,8 @@ app.use("/", main);
 app.use("/posts", posts);
 
 app.use("/blog", blog);
+
+app.use("/user", users);
 
 const hbs = create({
   helpers: {
