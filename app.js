@@ -56,7 +56,7 @@ app.use("/posts", posts);
 
 app.use("/blog", blog);
 
-app.use("/user", users);
+app.use("/users", users);
 
 const hbs = create({
   helpers: {
