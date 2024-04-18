@@ -9,7 +9,9 @@ import { fileURLToPath } from "url";
 const router = express.Router();
 
 router.get("/new", (req, res) => {
-  res.render("site/add-post");
+  req.session.userId
+    ? res.render("site/add-post")
+    : res.redirect("/users/login");
 });
 
 router.get("/:id", (req, res) => {

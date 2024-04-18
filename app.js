@@ -22,6 +22,10 @@ import textLengthControl from "./helpers/textLengthControl.js";
 
 import session from "express-session";
 
+// import crypto from "crypto";
+
+import MongoStore from "connect-mongo";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -32,6 +36,8 @@ const port = 3000;
 
 const hostname = "127.0.0.1";
 
+// const secret = crypto.randomBytes(32).toString("hex");
+
 mongoose
   .connect(`mongodb://127.0.0.1/courses_db`)
   .then("Connected !")
@@ -39,7 +45,14 @@ mongoose
 
 app.use(
   session({
-    secret: "Test",
+    secret: "test",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1/courses_db",
+      dbName: "courses_db",
+      stringify: false,
+    }),
   })
 );
 

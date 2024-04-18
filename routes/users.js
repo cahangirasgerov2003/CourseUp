@@ -30,11 +30,18 @@ router.post("/login", (req, res) => {
       email,
     })
     .then((response) => {
-      response
-        ? response.password === password
-          ? res.redirect("/")
-          : res.redirect("/users/login")
-        : res.redirect("/users/register");
+      // response
+      //   ? response.password === password
+      //     ? res.redirect("/")
+      //     : res.redirect("/users/login")
+      //   : res.redirect("/users/register");
+
+      if (response) {
+        if (response.password === password) {
+          req.session.userId = response._id;
+          res.redirect("/");
+        } else res.redirect("/users/login");
+      } else res.redirect("/users/register");
     })
     .catch((err) => {
       console.log(err);
