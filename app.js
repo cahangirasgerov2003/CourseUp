@@ -12,6 +12,8 @@ import blog from "./routes/blog.js";
 
 import users from "./routes/users.js";
 
+import admin from "./routes/admin/index.js";
+
 import bodyParser from "body-parser";
 
 import fileUpload from "express-fileupload";
@@ -47,7 +49,7 @@ app.use(
   session({
     secret: "test",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: "mongodb://127.0.0.1/courses_db",
       dbName: "courses_db",
@@ -90,6 +92,8 @@ app.use("/posts", posts);
 app.use("/blog", blog);
 
 app.use("/users", users);
+
+app.use("/admin", admin);
 
 const hbs = create({
   helpers: {

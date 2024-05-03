@@ -1,0 +1,74 @@
+<!--==========================
+    INSIDE HERO SECTION Section
+============================-->
+<section class="page-image page-image-about md-padding">
+  <h1 class="text-white text-center">CATEGORIES</h1>
+</section>
+
+<!--==========================
+    ADMIN Section
+============================-->
+<section
+  id="categories"
+  class="md-padding"
+  style="display: flex; align-items: center;"
+>
+  {{! height: calc(100% - 499px) }}
+  <div class="container">
+    {{! style="min-width: 70%" }}
+    {{> admin-bar}}
+    <div class="row mt-5">
+      <div class="col-md-4 col-12 pr-md-5 mb-md-0 mb-5">
+        <form action="" method="post" enctype="multipart/form-data">
+          <div class="mb-4">
+            <div class="form-group">
+              <input
+                class="form-control"
+                style="padding-top:26px; padding-bottom: 26px; "
+                name="categoryName"
+                type="text"
+                placeholder="Category name"
+                required="required"
+                data-validation-required-message="Please enter category name."
+              />
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div>
+            <div id="success"></div>
+            <button
+              id="addCategoryButton"
+              class="main-btn d-block w-100 m-0 px-0 rounded"
+              style="font-size: 16px; font-weight: bold;"
+              type="submit"
+            >Add Category</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-8 col-12">
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr class="text-center">
+              <th scope="col">#</th>
+              <th scope="col">ID</th>
+              <th scope="col">NAME</th>
+              <th scope="col">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each categories}}
+              <tr class="text-center text-dark">
+                <th scope="row">1</th>
+                <td>{{_id}}</td>
+                <td>{{categoryName}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger">DELETE</button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
