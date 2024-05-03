@@ -64,12 +64,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-// const middleware = (req, res, next) => {
-//   console.log("Salam");
-//   next();
-// };
+// FLASH - MESSAGES MIDDLEWARE
 
-// app.use("/", middleware);
+app.use((req, res, next) => {
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
+  next();
+});
 
 app.use("/", main);
 

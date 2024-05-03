@@ -32,7 +32,13 @@ router.post("/test", (req, res) => {
     ...req.body,
     post_file: `/img/posts/${post_file.name}`,
   });
-  res.redirect("/");
+
+  req.session.sessionFlash = {
+    type: "alert alert-success",
+    message: "Postunuz başarili şəkildə əlavə edildi",
+  };
+
+  res.redirect("/blog");
 });
 
 export default router;
