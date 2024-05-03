@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   posts
     .find({})
+    .sort({ date: 1 })
     .lean()
     .then((response) => {
       res.render("site/blog", { posts: response });

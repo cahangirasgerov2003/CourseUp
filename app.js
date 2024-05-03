@@ -22,7 +22,11 @@ import generateDate from "./helpers/generateDate.js";
 
 import textLengthControl from "./helpers/textLengthControl.js";
 
+// import counter from "./helpers/counter.js";
+
 import session from "express-session";
+
+import methodOverride from "method-override";
 
 // import crypto from "crypto";
 
@@ -66,6 +70,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+app.use(methodOverride("_method"));
+
 // FLASH - MESSAGES MIDDLEWARE
 
 app.use((req, res, next) => {
@@ -99,6 +105,7 @@ const hbs = create({
   helpers: {
     generateDate: generateDate.generateDate,
     textLengthControl: textLengthControl.lengthControl,
+    // counter: counter.counter,
   },
 });
 

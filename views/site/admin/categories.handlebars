@@ -58,17 +58,20 @@
           <tbody>
             {{#each categories}}
               <tr class="text-center text-dark">
-                <th scope="row">1</th>
+                <td>#</td>
                 <td>{{_id}}</td>
                 <td>{{categoryName}}</td>
                 <td>
-                  <button type="button" class="btn btn-danger">DELETE</button>
+                  <form method="post" action="/admin/categories/{{_id}}?_method=DELETE">
+                  <input type="hidden" name="_method" value="DELETE" />
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                  </form>
                 </td>
               </tr>
             {{/each}}
           </tbody>
         </table>
       </div>
-    </div>
+    </div> 
   </div>
 </section>
