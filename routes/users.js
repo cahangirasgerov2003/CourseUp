@@ -22,6 +22,13 @@ router.post("/register", (req, res) => {
     });
 });
 
+router.get("/logOut", (req, res) => {
+  req.session.destroy((err) => {
+    console.log(err);
+    res.redirect("login");
+  });
+});
+
 router.get("/login", (req, res) => {
   res.render("site/login");
 });

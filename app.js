@@ -72,6 +72,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// LINK SHOW MIDDLEWARE
+
+app.use((req, res, next) => {
+  if (req.session.userId) {
+    res.locals.linkShow = true;
+  } else {
+    res.locals.linkShow = false;
+  }
+  next();
+});
+
 app.use("/", main);
 
 app.use("/posts", posts);
