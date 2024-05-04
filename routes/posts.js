@@ -6,19 +6,40 @@ import path from "path";
 
 import { fileURLToPath } from "url";
 
+import category from "../models/category.js";
+
 const router = express.Router();
 
 router.get("/new", (req, res) => {
-  // req.session.userId  ? res.render("site/add-post"): res.redirect("/users/login");
-  res.render("site/add-post");
+  category
+    .find({})
+    .lean()
+    .then((result) => {
+      res.render("site/add-post", { categories: result });
+    });
 });
 
 router.get("/:id", (req, res) => {
   post
     .findById(req.params.id)
+    .populate({ path: "author", method: "user" })
+    .populate({ path: "selectedCategory", method: "category" })
     .lean()
     .then((response) => {
-      res.render("site/post-single", { post: response });
+      console.log(response);
+      category
+        .find({})
+        .sort({ data: -1 })
+        .lean()
+        .then((response2) => {
+          res.render("site/post-single", {
+            post: response,
+            categories: response2,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
 });
 
@@ -30,6 +51,7 @@ router.post("/test", (req, res) => {
   post.create({
     ...req.body,
     post_file: `/img/posts/${post_file.name}`,
+    author: req.session.userId,
   });
 
   req.session.sessionFlash = {
