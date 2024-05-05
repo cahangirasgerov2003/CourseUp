@@ -52,6 +52,7 @@
               <th scope="col">#</th>
               <th scope="col">ID</th>
               <th scope="col">NAME</th>
+              <th scope="col">EDIT</th>
               <th scope="col">DELETE</th>
             </tr>
           </thead>
@@ -61,6 +62,9 @@
                 <td>#</td>
                 <td>{{_id}}</td>
                 <td>{{categoryName}}</td>
+                <td>
+                    <a class="text-white btn btn-warning" href="/admin/categories/edit/{{_id}}">EDIT</a>
+                </td>
                 <td>
                   <form method="post" action="/admin/categories/{{_id}}?_method=DELETE">
                   <input type="hidden" name="_method" value="DELETE" />

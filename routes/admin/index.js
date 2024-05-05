@@ -6,7 +6,7 @@ import Posts from "../../models/post.js";
 
 import { fileURLToPath } from "url";
 
-import path, { dirname } from "path";
+import path from "path";
 
 const router = express.Router();
 
@@ -109,6 +109,29 @@ router.put("/post/edit/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.get("/categories/edit/:id", (req, res) => {
+  Category.findById(req.params.id)
+    .lean()
+    .then((response) => {
+      res.render("site/admin/editCategory", { category: response });
+    })
+    .catch((err) => console.log(err));
+});
+
+router.put("/category/edit/:id", (req, res) => {
+  Category.findById(req.params.id)
+    .then((response) => {
+      response.categoryName = req.body.categoryName;
+      response
+        .save()
+        .then(() => {
+          res.redirect("/admin/categories");
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 });
 
 export default router;

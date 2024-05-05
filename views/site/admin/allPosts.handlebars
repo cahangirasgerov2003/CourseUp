@@ -36,9 +36,7 @@
                 <td>{{title}}</td>
                 <td>{{selectedCategory.categoryName}}</td>
                  <td>
-                    <button type="button" class="btn btn-warning">
-                        <a class="text-white" href="/admin/posts/edit/{{_id}}">EDIT POST</a>
-                    </button> 
+                        <a class="text-white btn btn-warning" href="/admin/posts/edit/{{_id}}">EDIT POST</a>
                 </td>
                 <td>
                   <form method="post" action="/admin/allPosts/{{_id}}?_method=DELETE">
