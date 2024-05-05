@@ -1,0 +1,59 @@
+<!--==========================
+    INSIDE HERO SECTION Section
+============================-->
+<section class="page-image page-image-about md-padding">
+  <h1 class="text-white text-center">All Posts</h1>
+</section>
+
+<!--==========================
+    ADMIN Section
+============================-->
+<section
+  id="allPosts"
+  class="md-padding"
+  style="display: flex; align-items: center;"
+>
+  {{! height: calc(100% - 499px) }}
+  <div class="container">
+    {{! style="min-width: 70%" }}
+    {{> admin-bar}}
+    <div class="row mt-5">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr class="text-center">
+              <th scope="col">#</th>
+              <th scope="col">TITLE</th>
+              <th scope="col">CATEGORY</th>
+              <th scope="col">EDIT</th>
+              <th scope="col">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each posts}}
+              <tr class="text-center text-dark">
+                <td>#</td>
+                <td>{{title}}</td>
+                <td>{{selectedCategory.categoryName}}</td>
+                 <td>
+                  <form method="post" action="/admin/posts/edit/{{_id}}?_method=PUT">
+                  <input type="hidden" name="_method" value="PUT" />
+                    <button type="submit" class="btn btn-warning text-white">
+                        EDIT POST
+                    </button> 
+                  </form>
+                </td>
+                <td>
+                  <form method="post" action="/admin/allPosts/{{_id}}?_method=DELETE">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                  </form>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table> 
+      </div>
+    </div>
+  </div>
+</section>

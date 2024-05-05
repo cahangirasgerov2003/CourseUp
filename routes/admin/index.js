@@ -2,6 +2,8 @@ import express from "express";
 
 import Category from "../../models/category.js";
 
+import Posts from "../../models/post.js";
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -37,6 +39,28 @@ router.delete("/categories/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.delete("/allPosts/:id", (req, res) => {
+  Posts.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.redirect("/admin/posts");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+router.get("/posts", (req, res) => {
+  // res.render("site/admin/allPosts");
+  Posts.find({ author: req.session.userId })
+    .populate({ path: "selectedCategory", method: "category" })
+    .sort({ $natural: -1 })
+    .lean()
+    .then((response) => {
+      res.render("site/admin/allPosts", { posts: response });
+    })
+    .catch((err) => console.log(err));
 });
 
 export default router;
