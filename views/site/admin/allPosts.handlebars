@@ -36,12 +36,9 @@
                 <td>{{title}}</td>
                 <td>{{selectedCategory.categoryName}}</td>
                  <td>
-                  <form method="post" action="/admin/posts/edit/{{_id}}?_method=PUT">
-                  <input type="hidden" name="_method" value="PUT" />
-                    <button type="submit" class="btn btn-warning text-white">
-                        EDIT POST
+                    <button type="button" class="btn btn-warning">
+                        <a class="text-white" href="/admin/posts/edit/{{_id}}">EDIT POST</a>
                     </button> 
-                  </form>
                 </td>
                 <td>
                   <form method="post" action="/admin/allPosts/{{_id}}?_method=DELETE">

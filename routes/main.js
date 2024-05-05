@@ -3,7 +3,6 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  console.log("Session control", req.session);
   res.render("site/index");
 });
 

@@ -2,7 +2,7 @@
     INSIDE HERO SECTION Section
 ============================-->
 <section class="page-image page-image-contact md-padding">
-  <h1 class="text-white text-center">ADD POST</h1>
+  <h1 class="text-white text-center">EDIT POST</h1>
 </section>
 
 <!--==========================
@@ -14,21 +14,27 @@
     <div class="row text-center">
       <div class="col-md-4 offset-md-4">
         <div class="section-header">
-          <h2 class="title">Add Post</h2>
+          <h2 class="title">EDIT POST</h2>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12">
-        <form action="/posts/test" method="post" enctype="multipart/form-data">
+        <form
+          action="/admin/post/edit/{{post._id}}?_method=PUT"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="hidden" name="_method" value="PUT" />
           <div class="offset-2 col-md-8">
             <div class="form-group">
               <input
                 class="form-control"
                 name="title"
                 type="text"
-                placeholder="Post title"
+                {{! placeholder="Post title" }}
+                value="{{post.title}}"
                 required="required"
                 data-validation-required-message="Please enter post title."
               />
@@ -38,16 +44,16 @@
               <textarea
                 class="form-control"
                 name="content"
-                placeholder="Your content"
+                {{! placeholder="Your content" }}
                 required="required"
                 data-validation-required-message="Please enter post content."
-              ></textarea>
+              >{{post.content}}</textarea>
               <p class="help-block text-danger"></p>
             </div>
             <div class="form-group">
               <select class="form-control" name="selectedCategory">
                 {{#each categories}}
-                  <option value={{_id}}>{{categoryName}}</option>
+                  <option value={{_id}} {{#if (isEqual _id ../post.selectedCategory)}}selected{{/if}}>{{categoryName}}</option>
                 {{/each}}
               </select>
             </div>
@@ -65,7 +71,7 @@
           <div class="clearfix"></div>
           <div class="col-lg-12 text-center">
             <div id="success"></div>
-            <button id="addPostButton" class="main-btn" type="submit">Add Post</button>
+            <button id="editPostButton" class="main-btn" type="submit">EDIT Post</button>
           </div>
         </form>
       </div>

@@ -26,7 +26,6 @@ router.get("/:id", (req, res) => {
     .populate({ path: "selectedCategory", method: "category" })
     .lean()
     .then((response) => {
-      console.log(response);
       category
         .find({})
         .sort({ data: -1 })

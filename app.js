@@ -32,6 +32,9 @@ import methodOverride from "method-override";
 
 import MongoStore from "connect-mongo";
 
+// import helpers from "handlebars-helpers";
+import _ from "lodash";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
@@ -105,7 +108,9 @@ const hbs = create({
   helpers: {
     generateDate: generateDate.generateDate,
     textLengthControl: textLengthControl.lengthControl,
+    // ...helpers(),
     // counter: counter.counter,
+    isEqual: _.isEqual,
   },
 });
 

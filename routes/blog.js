@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
     .sort({ date: 1 })
     .lean()
     .then((response) => {
-      console.log(response);
       category
         .find({})
         .sort({ data: -1 })
