@@ -22,6 +22,8 @@ import generateDate from "./helpers/generateDate.js";
 
 import textLengthControl from "./helpers/textLengthControl.js";
 
+import postLimit from "./helpers/postLimit.js";
+
 // import counter from "./helpers/counter.js";
 
 import session from "express-session";
@@ -111,6 +113,7 @@ const hbs = create({
     // ...helpers(),
     // counter: counter.counter,
     isEqual: _.isEqual,
+    postLimit: postLimit.postLimit,
   },
 });
 

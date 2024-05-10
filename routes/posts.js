@@ -31,10 +31,17 @@ router.get("/:id", (req, res) => {
         .sort({ data: -1 })
         .lean()
         .then((response2) => {
-          res.render("site/post-single", {
-            post: response,
-            categories: response2,
-          });
+          post
+            .find({})
+            .lean()
+            .then((response3) => {
+              res.render("site/post-single", {
+                post: response,
+                categories: response2,
+                posts: response3,
+              });
+            })
+            .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);

@@ -1,0 +1,22 @@
+<!-- Posts sidebar -->
+<div class="widget">
+  <h3 class="mb-3">Latest Posts</h3>
+
+  <!-- single post -->
+  {{#each (postLimit posts 2)}}
+    <div class="widget-post">
+      <a href="/posts/{{_id}}">
+        <img
+          class="img-fluid"
+          src="{{post_file}}"
+          alt="post_image"
+        />{{post.title}}
+      </a>
+      <ul class="blog-meta">
+        <li>{{generateDate post.date "ll"}}</li>
+      </ul>
+    </div>
+  {{/each}}
+
+</div>
+<!-- /Posts sidebar -->

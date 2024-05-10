@@ -25,7 +25,7 @@
             <ul class="blog-meta">
               <li><i class="fas fa-user"></i>{{post.author.userName}}</li>
               <li><i class="fas fa-clock"></i>{{generateDate
-                  this.date
+                  post.date
                   "MMM Do LTS"
                 }}</li>
               <li><i class="fas fa-comments"></i>57</li>
@@ -98,48 +98,8 @@
           <h3 class="mb-3">Post's category :</h3>
           <h4>{{post.selectedCategory.categoryName}}</h4>
         </div>
-        <!-- Posts sidebar -->
-        <div class="widget">
-          <h3 class="mb-3">Latest Posts</h3>
 
-          <!-- single post -->
-          <div class="widget-post">
-            <a href="#">
-              <img class="img-fluid" src="/img/post1.jpg" alt="" />
-              Lorem Ipsum
-            </a>
-            <ul class="blog-meta">
-              <li>Oct 18, 2017</li>
-            </ul>
-          </div>
-          <!-- /single post -->
-
-          <!-- single post -->
-          <div class="widget-post">
-            <a href="#">
-              <img class="img-fluid" src="/img/post2.jpg" alt="" />
-              Lorem Ipsum
-            </a>
-            <ul class="blog-meta">
-              <li>Oct 18, 2017</li>
-            </ul>
-          </div>
-          <!-- /single post -->
-
-          <!-- single post -->
-          <div class="widget-post">
-            <a href="#">
-              <img class="img-fluid" src="/img/post3.jpg" alt="" />
-              Lorem Ipsum
-            </a>
-            <ul class="blog-meta">
-              <li>Oct 18, 2017</li>
-            </ul>
-          </div>
-          <!-- /single post -->
-
-        </div>
-        <!-- /Posts sidebar -->
+        {{> latestPost}}
 
       </aside>
 
