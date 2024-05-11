@@ -31,7 +31,9 @@
                 </div>
                 <div class="blog-content">
                   <ul class="blog-meta">
-                    <li><i class="fas fa-users"></i><span class="writer">{{author.userName}}</span></li>
+                    <li><i class="fas fa-users"></i><span
+                        class="writer"
+                      >{{author.userName}}</span></li>
                     <li><i class="fas fa-clock"></i><span
                         class="writer"
                       >{{generateDate date "MMM Do LT"}}</span></li>
@@ -39,7 +41,7 @@
                         class="writer"
                       >13</span></li>
                   </ul>
-                  <h3>{{post.title}}</h3>
+                  <h3>{{title}}</h3>
                   <p>{{textLengthControl content 97}}</p>
 
                   <a href="/posts/{{_id}}">Read More</a>
@@ -64,26 +66,13 @@
       </main>
 
       <aside id="aside" class="col-md-4">
-
-        <div class="widget">
-          <div class="widget-search">
-            <input
-              class="search-input form-control"
-              type="text"
-              placeholder="Search"
-            />
-            <button class="search-btn" type="button"><i
-                class="fas fa-search"
-              ></i></button>
-          </div>
-        </div>
-        <!-- /Search -->
-
+        {{> searchPost}}
+        
        {{> categories}}
 
        {{> latestPost}}
 
-      </aside> 
+      </aside>
 
     </div>
 

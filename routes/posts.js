@@ -10,6 +10,10 @@ import category from "../models/category.js";
 
 const router = express.Router();
 
+function regExpFunction(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
 router.get("/new", (req, res) => {
   category
     .find({})
@@ -103,6 +107,48 @@ router.get("/category/:categoryId", (req, res) => {
         });
     })
     .catch((err) => console.log(err));
+});
+
+// Search
+
+router.post("/search", (req, res) => {
+  if (req.body.postTitle) {
+    const cleanText = new RegExp(regExpFunction(req.body.postTitle), "gi");
+    post
+      .find({ title: cleanText })
+      .populate({ path: "author", method: "user" })
+      .sort({ $natural: -1 })
+      .lean()
+      .then((response) => {
+        category
+          .aggregate([
+            {
+              $lookup: {
+                from: "posts",
+                localField: "_id",
+                foreignField: "selectedCategory",
+                as: "numberOfCategory",
+              },
+            },
+            {
+              $project: {
+                _id: 1,
+                categoryName: 1,
+                number_of_category: {
+                  $size: "$numberOfCategory",
+                },
+              },
+            },
+          ])
+          .then((response2) => {
+            res.render("site/blog", { posts: response, categories: response2 });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => console.log(err));
+  }
 });
 
 export default router;
