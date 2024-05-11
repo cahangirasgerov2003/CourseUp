@@ -14,9 +14,25 @@ router.get("/", (req, res) => {
     .lean()
     .then((response) => {
       category
-        .find({})
-        .sort({ data: -1 })
-        .lean()
+        .aggregate([
+          {
+            $lookup: {
+              from: "posts",
+              localField: "_id",
+              foreignField: "selectedCategory",
+              as: "numberOfCategory",
+            },
+          },
+          {
+            $project: {
+              _id: 1,
+              categoryName: 1,
+              number_of_category: {
+                $size: "$numberOfCategory",
+              },
+            },
+          },
+        ])
         .then((response2) => {
           res.render("site/blog", { posts: response, categories: response2 });
         })

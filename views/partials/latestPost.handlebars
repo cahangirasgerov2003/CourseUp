@@ -3,14 +3,11 @@
   <h3 class="mb-3">Latest Posts</h3>
 
   <!-- single post -->
-  {{#each (postLimit posts 2)}}
+  {{#each (postLimit posts 3)}}
     <div class="widget-post">
       <a href="/posts/{{_id}}">
-        <img
-          class="img-fluid"
-          src="{{post_file}}"
-          alt="post_image"
-        />{{post.title}}
+        <img class="img-fluid" src="{{post_file}}" alt="post_image" />
+        <span style="color: rgb(133, 71, 4);">{{title}}</span>
       </a>
       <ul class="blog-meta">
         <li>{{generateDate post.date "ll"}}</li>

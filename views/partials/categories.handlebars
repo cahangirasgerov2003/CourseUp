@@ -1,10 +1,18 @@
 <!-- Categories -->
 <div class="widget">
   <h3 class="mb-3">Categories</h3>
-  <div class="widget-category">
+  <ul class="list-group list-group-flush">
     {{#each categories}}
-      <a href="#" style="color: rgb(70, 31, 3);">{{categoryName}}<span
-        >(7)</span></a>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        style="color: black;"
+      >
+        {{categoryName}}
+        <span
+          class="badge rounded-pill"
+          style="font-size: 13px; font-weight: bolder; color: white; background: #a77c0e;"
+        >{{number_of_category}}</span>
+      </li>
     {{/each}}
-  </div>
+  </ul>
 </div>
