@@ -11,7 +11,11 @@ import path from "path";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("site/admin/index");
+  if (!req.session.userId) {
+    res.render("site/login");
+  } else {
+    res.render("site/admin/index");
+  }
 });
 
 router.get("/categories", (req, res) => {
@@ -96,7 +100,7 @@ router.put("/post/edit/:id", (req, res) => {
     .then((result) => {
       result.title = req.body.title;
       result.content = req.body.content;
-      result.date = req.body.date;
+      result.date = Date.now();
       result.post_file = `/img/posts/${post_file.name}`;
       result.selectedCategory = req.body.selectedCategory;
       result

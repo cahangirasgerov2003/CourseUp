@@ -18,13 +18,7 @@ import bodyParser from "body-parser";
 
 import fileUpload from "express-fileupload";
 
-import generateDate from "./helpers/generateDate.js";
-
-import textLengthControl from "./helpers/textLengthControl.js";
-
-import postLimit from "./helpers/postLimit.js";
-
-// import counter from "./helpers/counter.js";
+import hbsHelpers from "./helpers/hbsHelpers.js";
 
 import session from "express-session";
 
@@ -108,12 +102,11 @@ app.use("/admin", admin);
 
 const hbs = create({
   helpers: {
-    generateDate: generateDate.generateDate,
-    textLengthControl: textLengthControl.lengthControl,
+    generateDate: hbsHelpers.generateDate,
+    textLengthControl: hbsHelpers.lengthControl,
     // ...helpers(),
-    // counter: counter.counter,
     isEqual: _.isEqual,
-    postLimit: postLimit.postLimit,
+    postLimit: hbsHelpers.postLimit,
   },
 });
 

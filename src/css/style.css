@@ -753,7 +753,8 @@ BLOG SECTION
   display: block;
   float: left;
   width: 85px;
-  height: auto;
+  height: 50px;
+  object-fit: cover;
   margin-right: 10px;
   margin-top: 5px;
 }
@@ -959,4 +960,14 @@ span.writer {
   display: flex !important;
   align-items: center;
   justify-content: center;
+}
+
+.numberOfCategories {
+  color: black;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.numberOfCategories:hover {
+  color: #fd8a10;
 }
