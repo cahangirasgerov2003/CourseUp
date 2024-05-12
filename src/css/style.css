@@ -234,7 +234,7 @@ a:not([href]):not([tabindex]):hover {
 .main-btn,
 .white-btn {
   display: inline-block;
-  padding: 10px 35px;
+  padding: 9px 35px;
   margin: 20px;
   border: 2px solid transparent;
   transition: 0.2s opacity;
@@ -244,6 +244,9 @@ a:not([href]):not([tabindex]):hover {
 .main-btn {
   background-color: #fd8a10;
   color: #fff;
+  font: bolder;
+  font-size: 16px;
+  border-radius: 4px;
 }
 
 .white-btn {
@@ -254,6 +257,7 @@ a:not([href]):not([tabindex]):hover {
 .main-btn:hover,
 .white-btn:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 /*--------------------------------------------------------------
@@ -981,4 +985,10 @@ span.writer {
 
 .numberOfCategories:hover {
   color: #fd8a10;
+}
+
+#sendEmailMessageForm input.form-control,
+#sendEmailMessageForm textarea {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
 }

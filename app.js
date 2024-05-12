@@ -12,6 +12,8 @@ import blog from "./routes/blog.js";
 
 import users from "./routes/users.js";
 
+import contact from "./routes/contact.js";
+
 import admin from "./routes/admin/index.js";
 
 import bodyParser from "body-parser";
@@ -99,6 +101,8 @@ app.use("/blog", blog);
 app.use("/users", users);
 
 app.use("/admin", admin);
+
+app.use("/contact", contact);
 
 const hbs = create({
   helpers: {
