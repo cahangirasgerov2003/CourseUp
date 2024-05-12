@@ -21,15 +21,15 @@ router.post("/email", (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: "cahangir22asgerov@gmail.com",
-      pass: "caxg xify ylom eqrt",
+      user: "",
+      pass: "",
     },
   });
 
   async function main() {
     const info = await transporter.sendMail({
-      from: '"From :" <cahangir22asgerov@gmail.com>',
-      to: "cahangir22asgerov@gmail.com",
+      from: '"From :" <>',
+      to: "",
       subject: "Node project message",
       html: messageOutput,
     });
