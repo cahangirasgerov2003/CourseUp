@@ -107,6 +107,7 @@ const hbs = create({
     // ...helpers(),
     isEqual: _.isEqual,
     postLimit: hbsHelpers.postLimit,
+    pagination: hbsHelpers.pagination,
   },
 });
 

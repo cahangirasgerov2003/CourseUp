@@ -164,6 +164,17 @@ nav.navbar-container {
 
 .page-link:hover {
   background-color: #fd8a10;
+  color: white;
+}
+
+.page-item.active .page-link {
+  background-color: #fd8a10;
+  color: white;
+  border: 1px solid #dee2e6;
+}
+
+a:not([href]):not([tabindex]):hover {
+  color: white;
 }
 
 .navStyle.shrink {
