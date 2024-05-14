@@ -83,4 +83,8 @@ export default {
 
     return outputHTML;
   },
+
+  numbering(index) {
+    return index + 1;
+  },
 };

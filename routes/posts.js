@@ -8,6 +8,8 @@ import { fileURLToPath } from "url";
 
 import category from "../models/category.js";
 
+import comment from "../models/comment.js";
+
 const router = express.Router();
 
 function regExpFunction(text) {
@@ -39,11 +41,20 @@ router.get("/:id", (req, res) => {
             .find({})
             .lean()
             .then((response3) => {
-              res.render("site/post-single", {
-                post: response,
-                categories: response2,
-                posts: response3,
-              });
+              comment
+                .find({ selectedPost: req.params.id })
+                .sort({ $natural: -1 })
+                .lean()
+                .then((response4) => {
+                  res.render("site/post-single", {
+                    post: response,
+                    categories: response2,
+                    posts: response3,
+                    comments: response4,
+                    number_of_comments: response4.length,
+                  });
+                })
+                .catch((err) => console.log(err));
             })
             .catch((err) => console.log(err));
         })
@@ -149,6 +160,21 @@ router.post("/search", (req, res) => {
       })
       .catch((err) => console.log(err));
   }
+});
+
+router.post("/:id/comment", (req, res) => {
+  const selectedPost = req.params.id;
+  comment
+    .create({
+      ...req.body,
+      selectedPost: selectedPost,
+    })
+    .then(() => {
+      res.redirect(`/posts/${selectedPost}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 export default router;
