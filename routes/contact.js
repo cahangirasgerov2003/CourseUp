@@ -33,8 +33,6 @@ router.post("/email", (req, res) => {
       subject: "Node project message",
       html: messageOutput,
     });
-
-    // console.log("Message sent: ", info.messageId);
   }
 
   main()
