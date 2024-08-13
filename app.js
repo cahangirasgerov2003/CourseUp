@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
   app.enable("view cache");
 }
 
-const port = 3000;
+const port = process.env.PORT;
 
 const hostname = "127.0.0.1";
 
