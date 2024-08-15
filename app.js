@@ -33,22 +33,25 @@ import MongoStore from "connect-mongo";
 // import helpers from "handlebars-helpers";
 import _ from "lodash";
 
+import dotenv from "dotenv";
+
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
   app.enable("view cache");
 }
 
-const port = process.env.PORT;
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+
+const mongoDbUrl = process.env.MONGODB_URL;
 
 const hostname = "127.0.0.1";
 
 // const secret = crypto.randomBytes(32).toString("hex");
 
-mongoose
-  .connect(`mongodb://127.0.0.1/courses_db`)
-  .then("Connected !")
-  .catch("Connect error !");
+mongoose.connect(mongoDbUrl).then("Connected !").catch("Connect error !");
 
 app.use(
   session({
@@ -56,7 +59,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1/courses_db",
+      mongoUrl: mongoDbUrl,
       dbName: "courses_db",
       stringify: false,
     }),
